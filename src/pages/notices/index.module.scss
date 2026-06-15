@@ -1,0 +1,75 @@
+@use '@/styles/variables.scss' as *;
+
+.page {
+  padding: 0 $page-padding 120rpx;
+}
+
+.tabs {
+  display: flex;
+  background: $color-bg-card;
+  border-radius: $radius-lg;
+  padding: $spacing-xs;
+  margin: $spacing-md 0;
+  box-shadow: $shadow-card;
+  gap: $spacing-xs;
+}
+
+.tab {
+  flex: 1;
+  height: 72rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: $radius-md;
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  font-weight: $font-weight-medium;
+  transition: all $transition-base;
+}
+
+.tabActive {
+  background: linear-gradient(135deg, $color-primary 0%, $color-primary-light 100%);
+  color: $color-text-white;
+  font-weight: $font-weight-semibold;
+}
+
+.noticeList {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.empty {
+  text-align: center;
+  padding: 120rpx 0;
+  color: $color-text-tertiary;
+  font-size: $font-size-md;
+}
+
+.emptyIcon {
+  font-size: 80rpx;
+  display: block;
+  margin-bottom: $spacing-md;
+  opacity: 0.5;
+}
+
+.communityBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: $color-primary-bg;
+  border-radius: $radius-md;
+  padding: $spacing-sm $spacing-md;
+  margin-bottom: $spacing-sm;
+}
+
+.communityName {
+  font-size: $font-size-sm;
+  color: $color-primary;
+  font-weight: $font-weight-medium;
+}
+
+.scopeTip {
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+}
