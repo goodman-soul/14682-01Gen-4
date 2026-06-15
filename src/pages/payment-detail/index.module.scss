@@ -1,30 +1,406 @@
 @use '@/styles/variables.scss' as *;
 
 .page {
-  min-height: 100vh;
-  padding: $spacing-xl $page-padding;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  padding-bottom: 180rpx;
 }
 
-.icon {
-  font-size: 120rpx;
-  margin-bottom: $spacing-lg;
+.headerCard {
+  background: linear-gradient(135deg, $color-primary 0%, $color-primary-light 100%);
+  padding: $spacing-xl $page-padding $spacing-xxl;
+  padding-top: calc(var(--status-bar-height) + #{$spacing-lg});
+  color: $color-text-white;
+}
+
+.locationRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  opacity: 0.95;
+}
+
+.locationLeft {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  max-width: 70%;
+}
+
+.locationCommunity {
+  font-size: $font-size-md;
+  font-weight: $font-weight-semibold;
+  @include text-ellipsis;
+}
+
+.locationRoom {
+  font-size: $font-size-xs;
+  opacity: 0.8;
+}
+
+.amountSection {
+  margin-top: $spacing-lg;
+  text-align: center;
+}
+
+.amountLabel {
+  font-size: $font-size-sm;
+  opacity: 0.85;
+  display: block;
+}
+
+.amountValue {
+  font-size: 80rpx;
+  font-weight: $font-weight-bold;
+  margin-top: $spacing-xs;
+  display: block;
+  line-height: 1.1;
+}
+
+.amountUnit {
+  font-size: $font-size-md;
+  font-weight: $font-weight-normal;
+  margin-left: $spacing-xs;
+}
+
+.statsRow {
+  display: flex;
+  justify-content: center;
+  gap: $spacing-xxl;
+  margin-top: $spacing-lg;
+}
+
+.statItem {
+  text-align: center;
+}
+
+.statNum {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  display: block;
+}
+
+.statLabel {
+  font-size: $font-size-xs;
+  opacity: 0.85;
+  margin-top: 4rpx;
+  display: block;
+}
+
+.container {
+  padding: 0 $page-padding;
+  margin-top: -48rpx;
+  position: relative;
+  z-index: 10;
+}
+
+.tabs {
+  display: flex;
+  background: $color-bg-card;
+  border-radius: $radius-lg;
+  padding: $spacing-xs;
+  box-shadow: $shadow-card;
+  gap: $spacing-xs;
+  margin-bottom: $spacing-md;
+}
+
+.tab {
+  flex: 1;
+  height: 72rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: $radius-md;
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  font-weight: $font-weight-medium;
+  transition: all $transition-base;
+  gap: $spacing-xs;
+}
+
+.tabActive {
+  background: linear-gradient(135deg, $color-primary 0%, $color-primary-light 100%);
+  color: $color-text-white;
+  font-weight: $font-weight-semibold;
+}
+
+.tabBadge {
+  min-width: 36rpx;
+  height: 36rpx;
+  padding: 0 $spacing-xs;
+  background: rgba(245, 63, 63, 0.9);
+  border-radius: 18rpx;
+  font-size: 20rpx;
+  color: $color-text-white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.billList {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.billCard {
+  background: $color-bg-card;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  box-shadow: $shadow-card;
+  transition: all $transition-base;
+
+  &:active {
+    opacity: 0.9;
+    transform: scale(0.995);
+  }
+}
+
+.billHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $spacing-md;
+}
+
+.billType {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.billIcon {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: $radius-md;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36rpx;
+}
+
+.iconProperty {
+  background: rgba(30, 158, 143, 0.1);
+}
+
+.iconWater {
+  background: rgba(22, 93, 255, 0.1);
+}
+
+.iconElectricity {
+  background: rgba(255, 125, 0, 0.1);
+}
+
+.iconGas {
+  background: rgba(245, 63, 63, 0.1);
+}
+
+.billTypeName {
+  font-size: $font-size-md;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  display: block;
+}
+
+.billPeriod {
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+  margin-top: 2rpx;
+  display: block;
+}
+
+.billAmount {
+  text-align: right;
+}
+
+.amountNum {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $color-text-primary;
+  display: block;
+  line-height: 1.1;
+}
+
+.amountPrefix {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-normal;
+}
+
+.billStatus {
+  font-size: $font-size-xs;
+  padding: 4rpx $spacing-sm;
+  border-radius: $radius-xs;
+  margin-top: 4rpx;
+  display: inline-block;
+}
+
+.statusUnpaid {
+  background: rgba(245, 63, 63, 0.1);
+  color: $color-error;
+  font-weight: $font-weight-medium;
+}
+
+.statusPaid {
+  background: rgba(0, 180, 42, 0.1);
+  color: $color-success;
+}
+
+.billFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: $spacing-md;
+  border-top: 1rpx solid $color-divider;
+}
+
+.deadline {
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+}
+
+.deadlineWarn {
+  color: $color-warning;
+}
+
+.payBtn {
+  @include button-reset;
+  height: $button-height-sm;
+  padding: 0 $spacing-lg;
+  background: linear-gradient(135deg, $color-primary 0%, $color-primary-light 100%);
+  color: $color-text-white;
+  border-radius: $radius-button;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  transition: all $transition-base;
+
+  &:active {
+    opacity: 0.9;
+    transform: scale(0.96);
+  }
+}
+
+.footerBar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: $spacing-md $page-padding calc(#{$spacing-md} + env(safe-area-inset-bottom));
+  background: $color-bg-card;
+  box-shadow: 0 -4rpx 16rpx rgba(0, 0, 0, 0.06);
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+}
+
+.footerLeft {
+  flex: 1;
+}
+
+.checkRow {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.checkBox {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: $radius-round;
+  border: 3rpx solid $color-border;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  transition: all $transition-base;
+}
+
+.checkBoxActive {
+  background: $color-primary;
+  border-color: $color-primary;
+  color: $color-text-white;
+}
+
+.checkLabel {
+  font-size: $font-size-sm;
+  color: $color-text-primary;
+  font-weight: $font-weight-medium;
+}
+
+.totalRow {
+  margin-top: 4rpx;
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+  padding-left: 52rpx;
+}
+
+.totalAmount {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+  color: $color-error;
+}
+
+.payAllBtn {
+  @include button-reset;
+  height: $button-height-lg;
+  padding: 0 $spacing-xl;
+  background: linear-gradient(135deg, $color-primary 0%, $color-primary-light 100%);
+  color: $color-text-white;
+  border-radius: $radius-button;
+  font-size: $font-size-md;
+  font-weight: $font-weight-semibold;
+  transition: all $transition-base;
+
+  &:active {
+    opacity: 0.9;
+    transform: scale(0.98);
+  }
+}
+
+.empty {
+  text-align: center;
+  padding: 120rpx 0;
+  color: $color-text-tertiary;
+  font-size: $font-size-md;
+  background: $color-bg-card;
+  border-radius: $radius-lg;
+}
+
+.emptyIcon {
+  font-size: 80rpx;
+  display: block;
+  margin-bottom: $spacing-md;
   opacity: 0.5;
 }
 
-.title {
-  font-size: $font-size-xl;
-  font-weight: $font-weight-semibold;
-  color: $color-text-primary;
-  margin-bottom: $spacing-sm;
+.guestCard {
+  background: $color-bg-card;
+  border-radius: $radius-lg;
+  padding: $spacing-xl;
+  text-align: center;
+  box-shadow: $shadow-card;
+  margin-top: $spacing-md;
 }
 
-.desc {
+.guestIcon {
+  font-size: 80rpx;
+  display: block;
+  margin-bottom: $spacing-md;
+  opacity: 0.5;
+}
+
+.guestText {
   font-size: $font-size-md;
-  color: $color-text-tertiary;
-  text-align: center;
-  line-height: $line-height-loose;
+  color: $color-text-secondary;
+  margin-bottom: $spacing-lg;
+  display: block;
+}
+
+.loginBtn {
+  @include button-reset;
+  width: 100%;
+  height: $button-height-lg;
+  background: linear-gradient(135deg, $color-primary 0%, $color-primary-light 100%);
+  color: $color-text-white;
+  border-radius: $radius-button;
+  font-size: $font-size-md;
+  font-weight: $font-weight-semibold;
 }

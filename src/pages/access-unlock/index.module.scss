@@ -1,30 +1,390 @@
 @use '@/styles/variables.scss' as *;
 
 .page {
-  min-height: 100vh;
-  padding: $spacing-xl $page-padding;
+  padding: $spacing-md $page-padding 120rpx;
+}
+
+.locationBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: $color-primary-bg;
+  border-radius: $radius-md;
+  padding: $spacing-md;
+  margin-bottom: $spacing-lg;
+}
+
+.locationCommunity {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $color-primary;
+}
+
+.locationRoom {
+  font-size: $font-size-xs;
+  color: $color-text-secondary;
+  margin-top: 2rpx;
+}
+
+.unlockSection {
+  background: linear-gradient(180deg, rgba(30, 158, 143, 0.08) 0%, transparent 100%);
+  border-radius: $radius-xl;
+  padding: $spacing-xl $spacing-lg;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: $spacing-lg;
+}
+
+.sectionHint {
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+  margin-bottom: $spacing-lg;
+  display: block;
+}
+
+.unlockBtnWrap {
+  position: relative;
+  width: 360rpx;
+  height: 360rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: $spacing-lg;
+}
+
+.pulseRing {
+  position: absolute;
+  border-radius: 50%;
+  border: 4rpx solid $color-primary;
+  opacity: 0;
+  animation: pulse 2s ease-out infinite;
+
+  &:nth-child(1) {
+    width: 280rpx;
+    height: 280rpx;
+  }
+
+  &:nth-child(2) {
+    width: 320rpx;
+    height: 320rpx;
+    animation-delay: 0.5s;
+  }
+
+  &:nth-child(3) {
+    width: 360rpx;
+    height: 360rpx;
+    animation-delay: 1s;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+}
+
+.unlockBtn {
+  @include button-reset;
+  width: 260rpx;
+  height: 260rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, $color-primary 0%, $color-primary-light 100%);
+  color: $color-text-white;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 12rpx 32rpx rgba(30, 158, 143, 0.4);
+  position: relative;
+  z-index: 10;
+  transition: all $transition-base;
+  gap: $spacing-xs;
+
+  &:active {
+    transform: scale(0.95);
+    box-shadow: 0 6rpx 16rpx rgba(30, 158, 143, 0.5);
+  }
 }
 
-.icon {
-  font-size: 120rpx;
-  margin-bottom: $spacing-lg;
-  opacity: 0.5;
+.unlockIcon {
+  font-size: 80rpx;
+  display: block;
 }
 
-.title {
-  font-size: $font-size-xl;
+.unlockText {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+  display: block;
+}
+
+.unlockSubtext {
+  font-size: $font-size-xs;
+  opacity: 0.85;
+  display: block;
+}
+
+.unlockStatus {
+  font-size: $font-size-md;
+  color: $color-text-primary;
+  font-weight: $font-weight-semibold;
+  margin-top: $spacing-sm;
+  display: block;
+}
+
+.statusSuccess {
+  color: $color-success;
+}
+
+.doorListSection {
+  margin-bottom: $spacing-md;
+}
+
+.sectionTitle {
+  font-size: $font-size-lg;
   font-weight: $font-weight-semibold;
   color: $color-text-primary;
+  margin-bottom: $spacing-md;
+  padding-left: $spacing-sm;
+  border-left: 6rpx solid $color-primary;
+  line-height: 1.2;
+}
+
+.doorGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-sm;
+}
+
+.doorCard {
+  background: $color-bg-card;
+  border-radius: $radius-lg;
+  padding: $spacing-md;
+  box-shadow: $shadow-card;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-sm;
+  transition: all $transition-base;
+
+  &:active {
+    opacity: 0.85;
+    transform: scale(0.97);
+  }
+}
+
+.doorActive {
+  background: linear-gradient(135deg, $color-primary 0%, $color-primary-light 100%);
+}
+
+.doorIcon {
+  font-size: 48rpx;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: $radius-md;
+  background: $color-primary-bg;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.doorActive .doorIcon {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.doorName {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+}
+
+.doorActive .doorName {
+  color: $color-text-white;
+}
+
+.doorStatus {
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+}
+
+.doorActive .doorStatus {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.visitorSection {
+  background: $color-bg-card;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  box-shadow: $shadow-card;
+  margin-bottom: $spacing-md;
+}
+
+.visitorHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $spacing-md;
+}
+
+.visitorTitle {
+  font-size: $font-size-md;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.visitorCode {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-md;
+  background: $color-bg-hover;
+  border-radius: $radius-md;
   margin-bottom: $spacing-sm;
 }
 
-.desc {
-  font-size: $font-size-md;
+.codeValue {
+  font-size: 48rpx;
+  font-weight: $font-weight-bold;
+  color: $color-primary;
+  letter-spacing: 8rpx;
+  font-family: 'Courier New', monospace;
+}
+
+.codeActions {
+  display: flex;
+  gap: $spacing-sm;
+}
+
+.codeBtn {
+  @include button-reset;
+  height: $button-height-sm;
+  padding: 0 $spacing-md;
+  background: $color-primary-bg;
+  color: $color-primary;
+  border-radius: $radius-button;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  transition: all $transition-base;
+
+  &:active {
+    background: rgba(30, 158, 143, 0.2);
+  }
+}
+
+.codeExpire {
+  font-size: $font-size-xs;
   color: $color-text-tertiary;
   text-align: center;
-  line-height: $line-height-loose;
+}
+
+.generateBtn {
+  @include button-reset;
+  width: 100%;
+  height: $button-height-lg;
+  background: linear-gradient(135deg, $color-primary 0%, $color-primary-light 100%);
+  color: $color-text-white;
+  border-radius: $radius-button;
+  font-size: $font-size-md;
+  font-weight: $font-weight-semibold;
+  transition: all $transition-base;
+
+  &:active {
+    opacity: 0.9;
+    transform: scale(0.98);
+  }
+}
+
+.historySection {
+  background: $color-bg-card;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  box-shadow: $shadow-card;
+}
+
+.historyItem {
+  display: flex;
+  align-items: center;
+  padding: $spacing-md 0;
+  border-bottom: 1rpx solid $color-divider;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.historyIcon {
+  font-size: 36rpx;
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: $radius-md;
+  background: $color-primary-bg;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: $spacing-md;
+}
+
+.historyInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.historyDoor {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-text-primary;
+  display: block;
+}
+
+.historyTime {
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+  margin-top: 2rpx;
+  display: block;
+}
+
+.historyType {
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+}
+
+.guestCard {
+  background: $color-bg-card;
+  border-radius: $radius-lg;
+  padding: $spacing-xl;
+  text-align: center;
+  box-shadow: $shadow-card;
+}
+
+.guestIcon {
+  font-size: 80rpx;
+  display: block;
+  margin-bottom: $spacing-md;
+  opacity: 0.5;
+}
+
+.guestText {
+  font-size: $font-size-md;
+  color: $color-text-secondary;
+  margin-bottom: $spacing-lg;
+  display: block;
+}
+
+.loginBtn {
+  @include button-reset;
+  width: 100%;
+  height: $button-height-lg;
+  background: linear-gradient(135deg, $color-primary 0%, $color-primary-light 100%);
+  color: $color-text-white;
+  border-radius: $radius-button;
+  font-size: $font-size-md;
+  font-weight: $font-weight-semibold;
 }

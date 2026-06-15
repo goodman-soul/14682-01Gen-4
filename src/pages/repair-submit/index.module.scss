@@ -1,30 +1,283 @@
 @use '@/styles/variables.scss' as *;
 
 .page {
-  min-height: 100vh;
-  padding: $spacing-xl $page-padding;
+  padding: $spacing-md $page-padding 200rpx;
+}
+
+.locationBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: $color-primary-bg;
+  border-radius: $radius-md;
+  padding: $spacing-md;
+  margin-bottom: $spacing-md;
+}
+
+.locationLeft {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  flex: 1;
+  min-width: 0;
+}
+
+.locationIcon {
+  font-size: 32rpx;
+}
+
+.locationText {
+  flex: 1;
+  min-width: 0;
+}
+
+.locationCommunity {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $color-primary;
+  @include text-ellipsis;
+}
+
+.locationRoom {
+  font-size: $font-size-xs;
+  color: $color-text-secondary;
+  margin-top: 2rpx;
+}
+
+.section {
+  background: $color-bg-card;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  box-shadow: $shadow-card;
+  margin-bottom: $spacing-md;
+}
+
+.sectionTitle {
+  font-size: $font-size-md;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  margin-bottom: $spacing-md;
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+}
+
+.sectionTitle::before {
+  content: '';
+  width: 6rpx;
+  height: 28rpx;
+  background: linear-gradient(180deg, $color-primary, $color-primary-light);
+  border-radius: $radius-xs;
+}
+
+.typeGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-sm;
+}
+
+.typeItem {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-md;
+  border-radius: $radius-md;
+  background: $color-bg-hover;
+  border: 2rpx solid transparent;
+  transition: all $transition-base;
+
+  &:active {
+    opacity: 0.8;
+  }
+}
+
+.typeItemActive {
+  background: $color-primary-bg;
+  border-color: $color-primary;
+}
+
+.typeIcon {
+  font-size: 36rpx;
+  width: 56rpx;
+  height: 56rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: $radius-sm;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.typeText {
+  font-size: $font-size-sm;
+  color: $color-text-primary;
+  font-weight: $font-weight-medium;
+}
+
+.textareaWrap {
+  background: $color-bg-hover;
+  border-radius: $radius-md;
+  padding: $spacing-md;
+}
+
+.textarea {
+  width: 100%;
+  height: 200rpx;
+  font-size: $font-size-md;
+  color: $color-text-primary;
+  background: transparent;
+  line-height: $line-height-normal;
+}
+
+.textareaCount {
+  text-align: right;
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+  margin-top: $spacing-xs;
+}
+
+.urgencyRow {
+  display: flex;
+  gap: $spacing-sm;
+}
+
+.urgencyItem {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  padding: $spacing-md $spacing-sm;
+  border-radius: $radius-md;
+  background: $color-bg-hover;
+  border: 2rpx solid transparent;
+  transition: all $transition-base;
+  gap: $spacing-xs;
+
+  &:active {
+    opacity: 0.8;
+  }
 }
 
-.icon {
-  font-size: 120rpx;
-  margin-bottom: $spacing-lg;
+.urgencyItemActive {
+  background: $color-primary-bg;
+  border-color: $color-primary;
+}
+
+.urgencyIcon {
+  font-size: 36rpx;
+}
+
+.urgencyText {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+}
+
+.urgencyTextNormal {
+  color: $color-text-secondary;
+}
+
+.urgencyTextUrgent {
+  color: $color-error;
+}
+
+.timeRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-md;
+  background: $color-bg-hover;
+  border-radius: $radius-md;
+}
+
+.timeLabel {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+}
+
+.timeValue {
+  font-size: $font-size-sm;
+  color: $color-text-primary;
+  font-weight: $font-weight-medium;
+}
+
+.infoRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-sm 0;
+  border-bottom: 1rpx solid $color-divider;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.infoLabel {
+  font-size: $font-size-sm;
+  color: $color-text-tertiary;
+}
+
+.infoValue {
+  font-size: $font-size-sm;
+  color: $color-text-primary;
+  font-weight: $font-weight-medium;
+}
+
+.footerBar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: $spacing-md $page-padding calc(#{$spacing-md} + env(safe-area-inset-bottom));
+  background: $color-bg-card;
+  box-shadow: 0 -4rpx 16rpx rgba(0, 0, 0, 0.06);
+}
+
+.submitBtn {
+  @include button-reset;
+  width: 100%;
+  height: $button-height-lg;
+  background: linear-gradient(135deg, $color-primary 0%, $color-primary-light 100%);
+  color: $color-text-white;
+  border-radius: $radius-button;
+  font-size: $font-size-md;
+  font-weight: $font-weight-semibold;
+  transition: all $transition-base;
+
+  &:active {
+    opacity: 0.9;
+    transform: scale(0.98);
+  }
+}
+
+.guestCard {
+  background: $color-bg-card;
+  border-radius: $radius-lg;
+  padding: $spacing-xl;
+  text-align: center;
+  box-shadow: $shadow-card;
+}
+
+.guestIcon {
+  font-size: 80rpx;
+  display: block;
+  margin-bottom: $spacing-md;
   opacity: 0.5;
 }
 
-.title {
-  font-size: $font-size-xl;
-  font-weight: $font-weight-semibold;
-  color: $color-text-primary;
-  margin-bottom: $spacing-sm;
+.guestText {
+  font-size: $font-size-md;
+  color: $color-text-secondary;
+  margin-bottom: $spacing-lg;
+  display: block;
 }
 
-.desc {
+.loginBtn {
+  @include button-reset;
+  width: 100%;
+  height: $button-height-lg;
+  background: linear-gradient(135deg, $color-primary 0%, $color-primary-light 100%);
+  color: $color-text-white;
+  border-radius: $radius-button;
   font-size: $font-size-md;
-  color: $color-text-tertiary;
-  text-align: center;
-  line-height: $line-height-loose;
+  font-weight: $font-weight-semibold;
 }
